@@ -54,17 +54,16 @@ const [accountName, setAccountName] = useState<string>('');
 
         <main className="text-center">
           
-        <h1 className='text-gray-200 mt-12'>
+        <h1 className='text-xl font-semibold text-gray-700 mt-12'>
           Create Demo App withNextApp & Relay
         </h1>
 
         <p className="text-gray-700 mt-32">
           {accountName !== '' ? `UserName(logged in User): ${accountName}` : 'Loading...'} 
         </p>
-        <p className="text-gray-700 mb-32">
+        <p className="left text-gray-700 mb-32">
           {accountName !== '' ? `Repository: ${repoName}` : 'Loading...'} 
         </p>
-
       </main>
 
 
