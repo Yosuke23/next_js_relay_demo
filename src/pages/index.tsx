@@ -4,6 +4,8 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import fetchGraphQL from '../lib/fetchGithubGraphQL';
+import Header from '../components/atoms/Header'
+import Footer from '../components/atoms/Footer';
 
 const Home: NextPage = () => {
 
@@ -41,6 +43,8 @@ const [accountName, setAccountName] = useState<string>('');
   
   
   return (
+    <>
+      <Header/>
     <div className={styles.container}>
       <Head>
         <title>Create Demo App with NextApp & Relay</title>
@@ -48,33 +52,27 @@ const [accountName, setAccountName] = useState<string>('');
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        {/* <h1 className={`${styles.title}`}>
-          Create Demo App with <a href="https://nextjs.org">NextApp</a>& Relay
-        </h1> */}
+        <main className="text-center">
+          
+        <h1 className='text-gray-200 mt-12'>
+          Create Demo App withNextApp & Relay
+        </h1>
 
-        <p className="text-gray-200 mt-96">
+        <p className="text-gray-700 mt-32">
           {accountName !== '' ? `UserName(logged in User): ${accountName}` : 'Loading...'} 
         </p>
-        <p>
+        <p className="text-gray-700 mb-32">
           {accountName !== '' ? `Repository: ${repoName}` : 'Loading...'} 
         </p>
 
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+
+      
+      </div>
+      <Footer />
+    </>
+    
   )
 }
 
