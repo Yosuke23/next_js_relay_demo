@@ -7,8 +7,8 @@ import fetchGraphQL from '../lib/fetchGithubGraphQL';
 
 const Home: NextPage = () => {
 
-const [repoName, setRepoName] = useState<string>('not found');
-const [accountName, setAccountName] = useState<string>('not found');
+const [repoName, setRepoName] = useState<string>('');
+const [accountName, setAccountName] = useState<string>('');
 
   useEffect(() => { 
     let isMounted = true;

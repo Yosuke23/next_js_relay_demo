@@ -1,7 +1,6 @@
 const fetchGithubGraphQL = async(text: string, variables: any) => {
     const Token = process.env.NEXT_PUBLIC_GITHUB_AUTH_TOKEN;
-    console.log(Token);
-  const response = await fetch('https://api.github.com/graphql', {
+    const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       Authorization: `bearer ${Token}`,
