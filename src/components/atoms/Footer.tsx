@@ -8,7 +8,7 @@ const FooterPosition = styled.footer`
   bottom: 0;
   text-align: center;
   z-index: 1000;
-  background-color: #333333;
+  background-color: #999999;
 `;
 
 const Line = styled.span`

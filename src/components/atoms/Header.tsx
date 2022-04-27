@@ -82,7 +82,7 @@ const Text = styled.p`
   color: #fff;
 `;
 const HeaderStyle = styled.header`
-  background-color: #333333;
+  background-color: #999999;
 `;
 
 export default Header;
