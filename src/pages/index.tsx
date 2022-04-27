@@ -53,7 +53,7 @@ const [accountName, setAccountName] = useState<string>('');
           Create Demo App with <a href="https://nextjs.org">NextApp</a>& Relay
         </h1> */}
 
-        <p>
+        <p className="text-gray-200 mt-96">
           {accountName !== '' ? `UserName(logged in User): ${accountName}` : 'Loading...'} 
         </p>
         <p>
