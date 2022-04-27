@@ -46,7 +46,7 @@ const Header = () => {
                 </button>
               </div>
               <div className='hidden md:flex-1 md:flex md:items-center md:justify-end'>
-                <Link href='/cart' passHref>
+                <Link href='#' passHref>
                   <Text className='flex items-center md:ml-12 mr-2'>
                     <span className='text-sm font-semibold'>demo</span>
                   </Text>
