@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const Header = () => {
+type Props = {
+  avatarImagePath: string;
+}
+
+const Header = ({avatarImagePath}: Props) => {
   // const { data } = useSession();
   // const isLoggedIn = data?.accessToken !== null;
 
@@ -51,6 +55,10 @@ const Header = () => {
                     <span className='text-sm font-semibold'>demo</span>
                   </Text>
                 </Link>
+                <span className="ml-3">
+                  <img src={avatarImagePath} className="flex rounded-full w-10 h-10" />
+                </span>
+
                 {/* {isLoggedIn ? (
                   <Link href='#' passHref>
                     <Text className='flex items-center md:ml-12 mr-2'>
@@ -84,5 +92,7 @@ const Text = styled.p`
 const HeaderStyle = styled.header`
   background-color: #999999;
 `;
-
+Header.defaultProps = {
+  avatarImagePath: '',
+};
 export default Header;
