@@ -6,12 +6,11 @@ import Link from 'next/link';
 import moment from 'moment';
 import Header from '../components/atoms/Header'
 import Footer from '../components/atoms/Footer';
+import type { repositoryQuery } from '../queries/__generated__/repositoryQuery.graphql';
 
 export async function getServerSideProps() {
-  const environment: any = createEnvironment()  
-  console.log(environment)
-  console.log(repository)
-  const queryProps: any = await fetchQuery(environment, repository, {}).toPromise()
+  const environment = createEnvironment()  
+  const queryProps = await fetchQuery<repositoryQuery>(environment, repository, {}).toPromise()
   return {
     props: {
       ...queryProps,
@@ -19,9 +18,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home(props: any, id: string) {
-  console.log(props.repository.name)
-  console.log(props.user.name)
+export default function Home(props: any) {
   return (
     <>
       <Header avatarImagePath={props != null ? `${props.user.avatarUrl}` : ""} />
@@ -41,7 +38,7 @@ export default function Home(props: any, id: string) {
               {props != null ? ` ${props.repository.name}` : "Loading"}
               </span>
             </Link>
-          </div>       
+          </div>
             <p className="text-gray-700 flex-grow">{props != null ? `name: ${props.user.name}` : "Loading"}({props != null ? `since: ${moment(props.user.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
             <p className="text-gray-700">{props != null ? `created at: ${ moment(props.repository.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
           </div>
