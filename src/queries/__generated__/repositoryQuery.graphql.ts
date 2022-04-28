@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c521152f695b1f3d797312b30d85322b>>
+ * @generated SignedSource<<2e2e9bc844732ad375c353ac31c839d4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -32,7 +32,7 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "name",
-    "value": "rerec"
+    "value": "nextjs_relay_demo"
   },
   {
     "kind": "Literal",
@@ -101,7 +101,7 @@ return {
           (v2/*: any*/),
           (v3/*: any*/)
         ],
-        "storageKey": "repository(name:\"rerec\",owner:\"Yosuke23\")"
+        "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       },
       {
         "alias": null,
@@ -140,7 +140,7 @@ return {
           (v3/*: any*/),
           (v6/*: any*/)
         ],
-        "storageKey": "repository(name:\"rerec\",owner:\"Yosuke23\")"
+        "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       },
       {
         "alias": null,
@@ -160,16 +160,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "92cf251f223d89340533de3328ca98a8",
+    "cacheID": "0f853bbf70e16ce6031476e288870537",
     "id": null,
     "metadata": {},
     "name": "repositoryQuery",
     "operationKind": "query",
-    "text": "query repositoryQuery {\n  repository(owner: \"Yosuke23\", name: \"rerec\") {\n    name\n    url\n    createdAt\n    id\n  }\n  user(login: \"Yosuke23\") {\n    name\n    avatarUrl\n    createdAt\n    id\n  }\n}\n"
+    "text": "query repositoryQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    name\n    url\n    createdAt\n    id\n  }\n  user(login: \"Yosuke23\") {\n    name\n    avatarUrl\n    createdAt\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9bf9d98150c5cc6b62117a9d4c00a36f";
+(node as any).hash = "55ab3375a49c76e891747eab4996b2b0";
 
 export default node;
