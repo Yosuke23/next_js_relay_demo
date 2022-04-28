@@ -1,20 +1,18 @@
 import {
   RequestParameters,
   Variables,
-  CacheConfig,
-  UploadableMap,
-  GraphQLResponse,
-  QueryResponseCache,
+  // CacheConfig,
+  // UploadableMap,
+  // GraphQLResponse,
+  // QueryResponseCache,
 } from 'relay-runtime';
 
-const cacheExpiry = 60 * 1000 * 5;
-const cache = new QueryResponseCache({ size: 250, ttl: cacheExpiry });
+//const cacheExpiry = 60 * 1000 * 5;
+//const cache = new QueryResponseCache({ size: 250, ttl: cacheExpiry });
 
 export default async (
   operation: RequestParameters,
   valiables: Variables,
-  cacheConfig: CacheConfig,
-  uploadables?: UploadableMap | null,
 ) => {
      const Token = process.env.NEXT_PUBLIC_GITHUB_AUTH_TOKEN;
     return fetch(`${process.env.NEXT_PUBLIC_RELAY_ENDPOINT}`, {

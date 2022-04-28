@@ -1,45 +1,23 @@
 import { useMemo } from 'react';
-import fetchQuery from './fetchFunction';
+import fetchFunction from '../lib/fetchFunction';
 import {
     Environment,
     Network,
     RecordSource,
     Store,
-    RequestParameters,
-    Variables, // 型のimport
-    CacheConfig, // 型のimport
-    UploadableMap, // 型のimport
-    GraphQLResponse, // 型のimport
-    QueryResponseCache, // 型のimport
 } from 'relay-runtime';
 
 let relayEnvironment: Environment;
 
-// const fetchQuery = (operation: RequestParameters, valiables: Variables, chcheConfig: CacheConfig, uploadables: UploadableMap) => {
-//     const Token = process.env.NEXT_PUBLIC_GITHUB_AUTH_TOKEN;
-//     return fetch(`${process.env.NEXT_PUBLIC_RELAY_ENDPOINT}`, {
-//         method: 'POST',
-//         headers: {
-//             Authorization: `bearer ${Token}`,
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//             query: operation.text,
-//             valiables
-//         }),
-//     }).then((response) => response.json())
-// }
-
-const createEnvironment = (initialRecords: RecordSource) => {
+const createEnvironment = () => {
     return new Environment({
-        network: Network.create(fetchQuery),
+        network: Network.create(fetchFunction),
         store: new Store(new RecordSource())
-
     })
 }
 
 export const initEnvironment = (initialRecords: RecordSource) => { 
-    const environment = relayEnvironment ?? createEnvironment(initialRecords)
+    const environment = relayEnvironment ?? createEnvironment()
     if (initialRecords) {
         environment.getStore().publish(new RecordSource());
     }
