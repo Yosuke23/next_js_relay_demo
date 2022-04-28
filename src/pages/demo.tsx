@@ -6,10 +6,11 @@ import Link from 'next/link';
 import moment from 'moment';
 import Header from '../components/atoms/Header'
 import Footer from '../components/atoms/Footer';
-import type { repositoryQuery } from '../queries/__generated__/repositoryQuery.graphql';
+import type {repositoryQuery$data as repositoryQueryType, repositoryQuery} from '../queries/__generated__/repositoryQuery.graphql'; // クエリのtypeをインポート
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment'; // createEnvironmentのtype指定のためインポート
 
 export async function getServerSideProps() {
-  const environment = createEnvironment()  
+  const environment: RelayModernEnvironment = createEnvironment()  
   const queryProps = await fetchQuery<repositoryQuery>(environment, repository, {}).toPromise()
   return {
     props: {
@@ -18,10 +19,10 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home(props: any) {
+export default function Home(props: repositoryQueryType ) {
   return (
     <>
-      <Header avatarImagePath={props != null ? `${props.user.avatarUrl}` : ""} />
+      <Header avatarImagePath={props != null ? `${props.user?.avatarUrl}` : ""} />
         <main className="text-center">
           <div className="mt-10 ml-10 overflow-hidden rounded-lg w-11/12 h-96 bg-gray-50 border border-gray-200">
             <h1 className='text-xl font-bold text-gray-700 mt-12'>
@@ -33,14 +34,14 @@ export default function Home(props: any) {
             <span className="text-gray-700">
               Repository: 
             </span>
-            <Link href={props != null ? `${props.repository.url}` : "Loading"}  passHref >
+            <Link href={props != null ? `${props.repository?.url}` : "Loading"}  passHref >
               <span className="text-blue-600">
-              {props != null ? ` ${props.repository.name}` : "Loading"}
+              {props != null ? ` ${props.repository?.name}` : "Loading"}
               </span>
             </Link>
           </div>
-            <p className="text-gray-700 flex-grow">{props != null ? `name: ${props.user.name}` : "Loading"}({props != null ? `since: ${moment(props.user.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
-            <p className="text-gray-700">{props != null ? `created at: ${ moment(props.repository.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
+            <p className="text-gray-700 flex-grow">{props != null ? `name: ${props.user?.name}` : "Loading"}({props != null ? `since: ${moment(props.user?.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
+            <p className="text-gray-700">{props != null ? `created at: ${ moment(props.repository?.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
           </div>
         </main>
       <Footer/>
