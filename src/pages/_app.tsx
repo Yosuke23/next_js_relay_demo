@@ -6,7 +6,7 @@ import { ReactRelayContext } from 'react-relay'
 import useEnvironment from '../lib/relay'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const environment = useEnvironment(pageProps.initialRecords)
+  const environment = useEnvironment(pageProps)
   return (
   <ReactRelayContext.Provider value={{ environment }}>
     <Component {...pageProps} />
