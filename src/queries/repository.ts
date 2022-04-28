@@ -2,7 +2,7 @@ import { graphql } from 'react-relay'
 
 export default graphql`
   query repositoryQuery {
-    repository(owner: "Yosuke23" name: "rerec") {
+    repository(owner: "Yosuke23" name: "nextjs_relay_demo") {
       name
       url
       createdAt
