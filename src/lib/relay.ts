@@ -1,20 +1,11 @@
 import { useMemo } from 'react';
-import fetchFunction from '../lib/fetchFunction';
+import createEnvironment from '../lib/createEnvironment'
 import {
     Environment,
-    Network,
     RecordSource,
-    Store,
 } from 'relay-runtime';
 
 let relayEnvironment: Environment;
-
-const createEnvironment = () => {
-    return new Environment({
-        network: Network.create(fetchFunction),
-        store: new Store(new RecordSource())
-    })
-}
 
 export const initEnvironment = (initialRecords: RecordSource) => { 
     const environment = relayEnvironment ?? createEnvironment()

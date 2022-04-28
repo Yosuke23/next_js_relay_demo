@@ -1,34 +1,17 @@
 import React from 'react';
 import { fetchQuery } from 'react-relay/hooks';
-import initEnvironment from '../lib/relay'
+import createEnvironment from '../lib/createEnvironment'
 import repository from '../queries/repository'
-import fetchFunction from '../lib/fetchFunction';
 import Link from 'next/link';
 import moment from 'moment';
-import {
-    Environment,
-    Network,
-    RecordSource,
-    Store,
-    RequestParameters,
-    Variables, // 型のimport
-    CacheConfig, // 型のimport
-    UploadableMap, // 型のimport
-    GraphQLResponse, // 型のimport
-    QueryResponseCache, // 型のimport
-} from 'relay-runtime';
 import Header from '../components/atoms/Header'
 import Footer from '../components/atoms/Footer';
 
 export async function getServerSideProps() {
-    const environment: any = new Environment({
-    network: Network.create(fetchFunction),
-    store: new Store(new RecordSource)
-  })
+  const environment: any = createEnvironment()  
   console.log(environment)
   console.log(repository)
   const queryProps: any = await fetchQuery(environment, repository, {}).toPromise()
-
   return {
     props: {
       ...queryProps,
