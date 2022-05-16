@@ -1,33 +1,33 @@
 import { graphql, commitMutation } from 'react-relay'
 import createEnvironment from '../lib/createEnvironment';
 import type {
-  AddReactionInput,
-  ReactionContent,
-  reactionMutation as reactionMutationType,
-reactionMutation$data as reactionMutationResponse,
-} from '../queries/__generated__/reactionMutation.graphql';
+  RemoveReactionInput,
+  removeReactionMutation as removeReactionMutationType,
+removeReactionMutation$data as removeReactionMutationResponse,
+} from '../queries/__generated__/removeReactionMutation.graphql';
 // src/queries/issueQuery.tsで取得した issueのIDをここに渡せる様な実装を目標にする、、まだできてない
-export const reactionMutations = graphql`
- mutation reactionMutation($input:AddReactionInput!){ 
-   addReaction(input:$input) { 
-    reaction{
-     content
+export const removeReactionMutation = graphql`
+  mutation removeReactionMutation($input:RemoveReactionInput!) {
+    removeReaction(input:$input) {
+      reaction {
+        content
+      }
     }
-   } 
   }
 `
+      
 // ここは現状つかってない
-export const commitReactionMutation = (): Promise<reactionMutationResponse> =>
+export const commitRemoveReactionMutation = (): Promise<removeReactionMutationResponse> =>
   new Promise((resolve, reject) => {
     const environment = createEnvironment()
     if (!environment) {
       reject(new Error('No environment'));
       return;
     }
-    commitMutation<reactionMutationType>(environment, {
-      mutation: reactionMutations,
+    commitMutation<removeReactionMutationType>(environment, {
+      mutation: removeReactionMutation,
       variables: {
-        input: <AddReactionInput>{},
+        input: <RemoveReactionInput>{},
       },
       onCompleted: (response) => {
         resolve(response);

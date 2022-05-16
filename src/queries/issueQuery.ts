@@ -1,5 +1,5 @@
 import { graphql } from 'react-relay'
-// issueのIDを取得
+// issue（今回は一個目のissue）のデータとそれに紐づいたcommentsのデータを取得（今回は初めから10件）
 export default graphql`
 query issueQuery {
   repository(owner: "Yosuke23", name: "nextjs_relay_demo") {
@@ -7,7 +7,16 @@ query issueQuery {
       id
       publishedAt
       title
+      body
+    comments(first: 10) {
+      edges {
+        node {
+          id
+          bodyText
+        }
+       }
+      }
+     }
     }
-  }
-}
+   }
 `
