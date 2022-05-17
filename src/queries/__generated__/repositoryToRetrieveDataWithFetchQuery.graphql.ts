@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f4216cc073f3935887718b3a30db17fb>>
+ * @generated SignedSource<<0e764f4d0a9dbdebb54bff03f912d26a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,19 +9,22 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-import { FragmentRefs } from "relay-runtime";
-export type repositoryQuery$variables = {};
-export type repositoryQuery$data = {
+export type repositoryToRetrieveDataWithFetchQuery$variables = {};
+export type repositoryToRetrieveDataWithFetchQuery$data = {
   readonly repository: {
-    readonly " $fragmentSpreads": FragmentRefs<"repositoryFragment">;
+    readonly name: string;
+    readonly url: any;
+    readonly createdAt: any;
   } | null;
   readonly user: {
-    readonly " $fragmentSpreads": FragmentRefs<"userFragment">;
+    readonly name: string | null;
+    readonly avatarUrl: any;
+    readonly createdAt: any;
   } | null;
 };
-export type repositoryQuery = {
-  variables: repositoryQuery$variables;
-  response: repositoryQuery$data;
+export type repositoryToRetrieveDataWithFetchQuery = {
+  variables: repositoryToRetrieveDataWithFetchQuery$variables;
+  response: repositoryToRetrieveDataWithFetchQuery$data;
 };
 
 const node: ConcreteRequest = (function(){
@@ -37,18 +40,18 @@ var v0 = [
     "value": "Yosuke23"
   }
 ],
-v1 = [
-  {
-    "kind": "Literal",
-    "name": "login",
-    "value": "Yosuke23"
-  }
-],
-v2 = {
+v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "url",
   "storageKey": null
 },
 v3 = {
@@ -58,7 +61,21 @@ v3 = {
   "name": "createdAt",
   "storageKey": null
 },
-v4 = {
+v4 = [
+  {
+    "kind": "Literal",
+    "name": "login",
+    "value": "Yosuke23"
+  }
+],
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "avatarUrl",
+  "storageKey": null
+},
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -70,7 +87,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "repositoryQuery",
+    "name": "repositoryToRetrieveDataWithFetchQuery",
     "selections": [
       {
         "alias": null,
@@ -80,27 +97,23 @@ return {
         "name": "repository",
         "plural": false,
         "selections": [
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "repositoryFragment"
-          }
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/)
         ],
         "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v4/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
         "name": "user",
         "plural": false,
         "selections": [
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "userFragment"
-          }
+          (v1/*: any*/),
+          (v5/*: any*/),
+          (v3/*: any*/)
         ],
         "storageKey": "user(login:\"Yosuke23\")"
       }
@@ -112,7 +125,7 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "repositoryQuery",
+    "name": "repositoryToRetrieveDataWithFetchQuery",
     "selections": [
       {
         "alias": null,
@@ -122,53 +135,41 @@ return {
         "name": "repository",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
           (v2/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "url",
-            "storageKey": null
-          },
           (v3/*: any*/),
-          (v4/*: any*/)
+          (v6/*: any*/)
         ],
         "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v4/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
         "name": "user",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "avatarUrl",
-            "storageKey": null
-          },
+          (v1/*: any*/),
+          (v5/*: any*/),
           (v3/*: any*/),
-          (v4/*: any*/)
+          (v6/*: any*/)
         ],
         "storageKey": "user(login:\"Yosuke23\")"
       }
     ]
   },
   "params": {
-    "cacheID": "1a43e1d7f30c82ba5b11240b88b6ba27",
+    "cacheID": "909fd4a4591f6c712f9a5805ef49b395",
     "id": null,
     "metadata": {},
-    "name": "repositoryQuery",
+    "name": "repositoryToRetrieveDataWithFetchQuery",
     "operationKind": "query",
-    "text": "query repositoryQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    ...repositoryFragment\n    id\n  }\n  user(login: \"Yosuke23\") {\n    ...userFragment\n    id\n  }\n}\n\nfragment repositoryFragment on Repository {\n  name\n  url\n  createdAt\n}\n\nfragment userFragment on User {\n  name\n  avatarUrl\n  createdAt\n}\n"
+    "text": "query repositoryToRetrieveDataWithFetchQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    name\n    url\n    createdAt\n    id\n  }\n  user(login: \"Yosuke23\") {\n    name\n    avatarUrl\n    createdAt\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2657bb738ae396bfe9c005907714c9f2";
+(node as any).hash = "d3be5f93c7a11559e819c28054120800";
 
 export default node;

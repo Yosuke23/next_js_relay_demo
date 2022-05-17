@@ -1,8 +1,9 @@
-import { graphql, commitMutation } from 'react-relay'
+import { graphql, commitMutation, readInlineData } from 'react-relay'
 import createEnvironment from '../lib/createEnvironment';
 import type {
   AddReactionInput,
   ReactionContent,
+  reactionMutation,
   reactionMutation as reactionMutationType,
 reactionMutation$data as reactionMutationResponse,
 } from '../queries/__generated__/reactionMutation.graphql';
@@ -17,24 +18,46 @@ export const reactionMutations = graphql`
   }
 `
 // ここは現状つかってない
-export const commitReactionMutation = (): Promise<reactionMutationResponse> =>
-  new Promise((resolve, reject) => {
-    const environment = createEnvironment()
-    if (!environment) {
-      reject(new Error('No environment'));
-      return;
-    }
-    commitMutation<reactionMutationType>(environment, {
+// export const commitReactionMutation = (): Promise<reactionMutationResponse> =>
+//   new Promise((resolve, reject) => {
+//     const environment = createEnvironment()
+//     if (!environment) {
+//       reject(new Error('No environment'));
+//       return;
+//     }
+//     commitMutation<reactionMutationType>(environment, {
+//       mutation: reactionMutations,
+//       variables: {
+//         input: <AddReactionInput>{},
+//       },
+//       onCompleted: (response) => {
+//         resolve(response);
+//         console.log(response)
+//       },
+//       onError: (error) => {
+//         reject(error);
+//       },
+//     });
+//   });
+  
+export const commitReactionMutation = (content: string, subjectId: string | undefined) =>  { 
+  const environment = createEnvironment()
+  const variables = {
+    input: {
+      content,
+      subjectId,
+    },
+  }
+  commitMutation(
+    environment,
+    {
       mutation: reactionMutations,
-      variables: {
-        input: <AddReactionInput>{},
+      variables,
+      // 6
+      onCompleted: () => {
+        console.log('Completed')
       },
-      onCompleted: (response) => {
-        resolve(response);
-        console.log(response)
-      },
-      onError: (error) => {
-        reject(error);
-      },
-    });
-  }  );
+      onError: err => console.error(err),
+    },
+  )
+}

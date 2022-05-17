@@ -1,16 +1,12 @@
 import { graphql } from 'react-relay'
 
-export default graphql`
+export const repositoryQuery = graphql`
   query repositoryQuery {
     repository(owner: "Yosuke23" name: "nextjs_relay_demo") {
-      name
-      url
-      createdAt
+      ...repositoryFragment
     },
     user(login: "Yosuke23") {
-      name
-      avatarUrl
-      createdAt
+      ...userFragment
     }
   }
 `
