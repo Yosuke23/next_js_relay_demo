@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ad00e9e0f4c923268273c84d22b4bb0f>>
+ * @generated SignedSource<<ea20587a8921464bea4fd8b4a2af323b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,22 +9,12 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type issueQuery$variables = {};
 export type issueQuery$data = {
   readonly repository: {
     readonly issue: {
-      readonly id: string;
-      readonly publishedAt: any | null;
-      readonly title: string;
-      readonly body: string;
-      readonly comments: {
-        readonly edges: ReadonlyArray<{
-          readonly node: {
-            readonly id: string;
-            readonly bodyText: string;
-          } | null;
-        } | null> | null;
-      };
+      readonly " $fragmentSpreads": FragmentRefs<"issueFragment">;
     } | null;
   } | null;
 };
@@ -46,98 +36,26 @@ var v0 = [
     "value": "Yosuke23"
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Literal",
+    "name": "number",
+    "value": 1
+  }
+],
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v2 = {
+v3 = {
   "alias": null,
-  "args": [
-    {
-      "kind": "Literal",
-      "name": "number",
-      "value": 1
-    }
-  ],
-  "concreteType": "Issue",
-  "kind": "LinkedField",
-  "name": "issue",
-  "plural": false,
-  "selections": [
-    (v1/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "publishedAt",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "body",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "first",
-          "value": 10
-        }
-      ],
-      "concreteType": "IssueCommentConnection",
-      "kind": "LinkedField",
-      "name": "comments",
-      "plural": false,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "IssueCommentEdge",
-          "kind": "LinkedField",
-          "name": "edges",
-          "plural": true,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "concreteType": "IssueComment",
-              "kind": "LinkedField",
-              "name": "node",
-              "plural": false,
-              "selections": [
-                (v1/*: any*/),
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "bodyText",
-                  "storageKey": null
-                }
-              ],
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        }
-      ],
-      "storageKey": "comments(first:10)"
-    }
-  ],
-  "storageKey": "issue(number:1)"
+  "args": null,
+  "kind": "ScalarField",
+  "name": "url",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -154,7 +72,22 @@ return {
         "name": "repository",
         "plural": false,
         "selections": [
-          (v2/*: any*/)
+          {
+            "alias": null,
+            "args": (v1/*: any*/),
+            "concreteType": "Issue",
+            "kind": "LinkedField",
+            "name": "issue",
+            "plural": false,
+            "selections": [
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "issueFragment"
+              }
+            ],
+            "storageKey": "issue(number:1)"
+          }
         ],
         "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       }
@@ -176,24 +109,105 @@ return {
         "name": "repository",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v1/*: any*/)
+          {
+            "alias": null,
+            "args": (v1/*: any*/),
+            "concreteType": "Issue",
+            "kind": "LinkedField",
+            "name": "issue",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "publishedAt",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "title",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "body",
+                "storageKey": null
+              },
+              (v3/*: any*/),
+              {
+                "alias": null,
+                "args": [
+                  {
+                    "kind": "Literal",
+                    "name": "first",
+                    "value": 10
+                  }
+                ],
+                "concreteType": "IssueCommentConnection",
+                "kind": "LinkedField",
+                "name": "comments",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "IssueCommentEdge",
+                    "kind": "LinkedField",
+                    "name": "edges",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "IssueComment",
+                        "kind": "LinkedField",
+                        "name": "node",
+                        "plural": false,
+                        "selections": [
+                          (v2/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "bodyText",
+                            "storageKey": null
+                          },
+                          (v3/*: any*/)
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": "comments(first:10)"
+              }
+            ],
+            "storageKey": "issue(number:1)"
+          },
+          (v2/*: any*/)
         ],
         "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       }
     ]
   },
   "params": {
-    "cacheID": "57d26d86342664a6ea51a816a20e379f",
+    "cacheID": "f1a796a7f78156c0c2f10c579a83c518",
     "id": null,
     "metadata": {},
     "name": "issueQuery",
     "operationKind": "query",
-    "text": "query issueQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    issue(number: 1) {\n      id\n      publishedAt\n      title\n      body\n      comments(first: 10) {\n        edges {\n          node {\n            id\n            bodyText\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query issueQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    issue(number: 1) {\n      ...issueFragment\n      id\n    }\n    id\n  }\n}\n\nfragment issueFragment on Issue {\n  id\n  publishedAt\n  title\n  body\n  url\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        bodyText\n        url\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b0c100130ba20de6f01d3f74a60ff5d0";
+(node as any).hash = "1f72f77e70227f73103ca1221c892016";
 
 export default node;

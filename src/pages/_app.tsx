@@ -4,15 +4,21 @@ import { ReactRelayContext } from 'react-relay'
 import useEnvironment from '../lib/relay'
 import 'tailwindcss/tailwind.css';
 import '@tailwindcss/forms';
-import { DemoProvider }  from '../Providers/DemoProvider';
+import { RepositoryUserProvider } from '../Providers/RepositoryUserProvider';
+import { RepositoryUserNotUsingFragmentProvider } from '../Providers/RepositoryUserNotUsingFragmentProvider';
+import { IssueQueryProvider } from '../Providers/IssueQueryProvider';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const environment = useEnvironment(pageProps)
   return (
     <ReactRelayContext.Provider value={{ environment }}>
-      <DemoProvider>
-        <Component {...pageProps} />
-      </DemoProvider>
+      <RepositoryUserProvider>
+        <RepositoryUserNotUsingFragmentProvider>
+          <IssueQueryProvider>
+            <Component {...pageProps} />
+            </IssueQueryProvider>
+        </RepositoryUserNotUsingFragmentProvider>
+      </RepositoryUserProvider>
     </ReactRelayContext.Provider>
   )}
 

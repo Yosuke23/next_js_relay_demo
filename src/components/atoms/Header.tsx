@@ -1,13 +1,38 @@
 import styled from 'styled-components';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { githubDemoContext } from '../../Providers/RepositoryUserProvider';
+import { PreloadedQuery, useFragment, useQueryLoader } from 'react-relay';
+import { repositoryQuery } from '../../queries/repository';
+import { userFragment } from '../../queries/userFragment';
+import type { userFragment$key as userFragmentRef } from '../../queries/__generated__/userFragment.graphql';
+import type {
+  repositoryQuery$data as repositoryQueryResponse,
+  repositoryQuery as repositoryQueryType
+} from '../../queries/__generated__/repositoryQuery.graphql'; // クエリのtypeをインポート
 
 type Props = {
   avatarImagePath: string;
-}
+  githubDemoContext?: githubDemoContext | null;
+  initialUserQueryRef?: PreloadedQuery<repositoryQueryType>,
+};
 
-const Header = ({avatarImagePath}: Props) => {
+const Header = ({avatarImagePath, githubDemoContext, initialUserQueryRef}: Props) => {
   // const { data } = useSession();
   // const isLoggedIn = data?.accessToken !== null;
+
+  const [, loadUserQuery] = useQueryLoader(repositoryQuery, initialUserQueryRef)
+  useEffect
+    (() => {
+      loadUserQuery({})
+    }, [])
+
+  const userData = useFragment<userFragmentRef>(userFragment, githubDemoContext?.data?.user ?? null);
+  console.log(userData);
+
+  if (!userData) {
+    null
+  }
 
   return (
     <HeaderStyle>
@@ -56,7 +81,7 @@ const Header = ({avatarImagePath}: Props) => {
                   </Text>
                 </Link>
                 <span className="ml-3">
-                  <img src={avatarImagePath} className="flex rounded-full w-10 h-10" />
+                  <img src={userData?.avatarUrl ?? avatarImagePath} className="flex rounded-full w-10 h-10" />
                 </span>
 
                 {/* {isLoggedIn ? (
@@ -94,5 +119,7 @@ const HeaderStyle = styled.header`
 `;
 Header.defaultProps = {
   avatarImagePath: '',
+  githubDemoContext: null,
+  initialUserQueryRef: null,
 };
 export default Header;
