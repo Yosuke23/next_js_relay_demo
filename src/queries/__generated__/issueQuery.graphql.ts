@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ea20587a8921464bea4fd8b4a2af323b>>
+ * @generated SignedSource<<e2f223104bb2660134655593ff13131b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -56,7 +56,136 @@ v3 = {
   "kind": "ScalarField",
   "name": "url",
   "storageKey": null
-};
+},
+v4 = {
+  "alias": null,
+  "args": [
+    {
+      "kind": "Literal",
+      "name": "first",
+      "value": 5
+    }
+  ],
+  "concreteType": "ReactionConnection",
+  "kind": "LinkedField",
+  "name": "reactions",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "ReactionEdge",
+      "kind": "LinkedField",
+      "name": "edges",
+      "plural": true,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "Reaction",
+          "kind": "LinkedField",
+          "name": "node",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "content",
+              "storageKey": null
+            },
+            (v2/*: any*/),
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "databaseId",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    }
+  ],
+  "storageKey": "reactions(first:5)"
+},
+v5 = [
+  (v2/*: any*/),
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "publishedAt",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "title",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "body",
+    "storageKey": null
+  },
+  (v3/*: any*/),
+  (v4/*: any*/),
+  {
+    "alias": null,
+    "args": [
+      {
+        "kind": "Literal",
+        "name": "first",
+        "value": 10
+      }
+    ],
+    "concreteType": "IssueCommentConnection",
+    "kind": "LinkedField",
+    "name": "comments",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "IssueCommentEdge",
+        "kind": "LinkedField",
+        "name": "edges",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "IssueComment",
+            "kind": "LinkedField",
+            "name": "node",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "bodyText",
+                "storageKey": null
+              },
+              (v3/*: any*/),
+              (v4/*: any*/)
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": "comments(first:10)"
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -81,9 +210,9 @@ return {
             "plural": false,
             "selections": [
               {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "issueFragment"
+                "kind": "InlineDataFragmentSpread",
+                "name": "issueFragment",
+                "selections": (v5/*: any*/)
               }
             ],
             "storageKey": "issue(number:1)"
@@ -116,79 +245,7 @@ return {
             "kind": "LinkedField",
             "name": "issue",
             "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "publishedAt",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "title",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "body",
-                "storageKey": null
-              },
-              (v3/*: any*/),
-              {
-                "alias": null,
-                "args": [
-                  {
-                    "kind": "Literal",
-                    "name": "first",
-                    "value": 10
-                  }
-                ],
-                "concreteType": "IssueCommentConnection",
-                "kind": "LinkedField",
-                "name": "comments",
-                "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "IssueCommentEdge",
-                    "kind": "LinkedField",
-                    "name": "edges",
-                    "plural": true,
-                    "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "IssueComment",
-                        "kind": "LinkedField",
-                        "name": "node",
-                        "plural": false,
-                        "selections": [
-                          (v2/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "bodyText",
-                            "storageKey": null
-                          },
-                          (v3/*: any*/)
-                        ],
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": "comments(first:10)"
-              }
-            ],
+            "selections": (v5/*: any*/),
             "storageKey": "issue(number:1)"
           },
           (v2/*: any*/)
@@ -198,12 +255,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f1a796a7f78156c0c2f10c579a83c518",
+    "cacheID": "a73568bbf15f9e564f075ebb26b5bc3d",
     "id": null,
     "metadata": {},
     "name": "issueQuery",
     "operationKind": "query",
-    "text": "query issueQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    issue(number: 1) {\n      ...issueFragment\n      id\n    }\n    id\n  }\n}\n\nfragment issueFragment on Issue {\n  id\n  publishedAt\n  title\n  body\n  url\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        bodyText\n        url\n      }\n    }\n  }\n}\n"
+    "text": "query issueQuery {\n  repository(owner: \"Yosuke23\", name: \"nextjs_relay_demo\") {\n    issue(number: 1) {\n      ...issueFragment\n      id\n    }\n    id\n  }\n}\n\nfragment issueFragment on Issue {\n  id\n  publishedAt\n  title\n  body\n  url\n  reactions(first: 5) {\n    edges {\n      node {\n        content\n        id\n        databaseId\n      }\n    }\n  }\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        bodyText\n        url\n        reactions(first: 5) {\n          edges {\n            node {\n              content\n              id\n              databaseId\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();

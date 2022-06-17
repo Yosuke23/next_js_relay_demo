@@ -7,34 +7,43 @@ removeReactionMutation$data as removeReactionMutationResponse,
 } from '../queries/__generated__/removeReactionMutation.graphql';
 // src/queries/issueQuery.tsで取得した issueのIDをここに渡せる様な実装を目標にする、、まだできてない
 export const removeReactionMutation = graphql`
-  mutation removeReactionMutation($input:RemoveReactionInput!) {
-    removeReaction(input:$input) {
+  mutation removeReactionMutation(
+    $removeReactionInput: RemoveReactionInput!
+    $reopenIssueInput: ReopenIssueInput!
+    ) {
+    removeReaction(input: $removeReactionInput) {
       reaction {
-        content
-      }
+      content
+      id
     }
   }
+  reopenIssue(input: $reopenIssueInput) {
+    issue {
+      ...issueFragment
+    }
+  }
+}
 `
       
 // ここは現状つかってない
-export const commitRemoveReactionMutation = (): Promise<removeReactionMutationResponse> =>
-  new Promise((resolve, reject) => {
-    const environment = createEnvironment()
-    if (!environment) {
-      reject(new Error('No environment'));
-      return;
-    }
-    commitMutation<removeReactionMutationType>(environment, {
-      mutation: removeReactionMutation,
-      variables: {
-        input: <RemoveReactionInput>{},
-      },
-      onCompleted: (response) => {
-        resolve(response);
-        console.log(response)
-      },
-      onError: (error) => {
-        reject(error);
-      },
-    });
-  }  );
+// export const commitRemoveReactionMutation = (): Promise<removeReactionMutationResponse> =>
+//   new Promise((resolve, reject) => {
+//     const environment = createEnvironment()
+//     if (!environment) {
+//       reject(new Error('No environment'));
+//       return;
+//     }
+//     commitMutation<removeReactionMutationType>(environment, {
+//       mutation: removeReactionMutation,
+//       variables: {
+//         input: <RemoveReactionInput>{},
+//       },
+//       onCompleted: (response) => {
+//         resolve(response);
+//         console.log(response)
+//       },
+//       onError: (error) => {
+//         reject(error);
+//       },
+//     });
+//   }  );

@@ -7,7 +7,7 @@ import {
 } from '../queries/__generated__/repositoryFragment.graphql';
 import { repositoryFragment } from '../queries/repositoryFragment';
 import { PreloadedQuery, useMutation } from 'react-relay/hooks';
-import { useQueryLoader, usePreloadedQuery, useFragment, useLazyLoadQuery } from 'react-relay'
+import { useQueryLoader, usePreloadedQuery, useFragment, useLazyLoadQuery, readInlineData } from 'react-relay'
 import { RepositoryViewUserInfo } from '../components/atoms/RepositoryViewUserInfo';
 
 import { viewerUserQuery } from '../queries/viewerUserQuery';
@@ -36,7 +36,7 @@ export default function Top({ repositoryRef, userRef, initialQueryRef, initialRe
   const [repositoryReference, loadRepository] = useQueryLoader(repositoryQuery, initialRepositoryRef)
   //【fragment】これでuserFragmentが子に渡される
   useFragment<userFragmentRef>(userFragment, userRef);
-  useFragment<repositoryFragmentRef>(repositoryFragment, repositoryRef);
+  readInlineData<repositoryFragmentRef>(repositoryFragment, repositoryRef);
 
   useEffect(() => {
     //クエリをロードだけ

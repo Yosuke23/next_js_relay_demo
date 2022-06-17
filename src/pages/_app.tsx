@@ -1,4 +1,11 @@
 import '../styles/globals.css'
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 import type { AppProps } from 'next/app'
 import { ReactRelayContext } from 'react-relay'
 import useEnvironment from '../lib/relay'
@@ -6,20 +13,23 @@ import 'tailwindcss/tailwind.css';
 import '@tailwindcss/forms';
 import { RepositoryUserProvider } from '../Providers/RepositoryUserProvider';
 import { RepositoryUserNotUsingFragmentProvider } from '../Providers/RepositoryUserNotUsingFragmentProvider';
-import { IssueQueryProvider } from '../Providers/IssueQueryProvider';
+import IssueQueryProvider from '../Providers/IssueQueryProvider';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   const environment = useEnvironment(pageProps)
   return (
-    <ReactRelayContext.Provider value={{ environment }}>
-      <RepositoryUserProvider>
-        <RepositoryUserNotUsingFragmentProvider>
-          <IssueQueryProvider>
-            <Component {...pageProps} />
+    <RecoilRoot>
+      <ReactRelayContext.Provider value={{ environment }}>
+        <RepositoryUserProvider>
+          <RepositoryUserNotUsingFragmentProvider>
+            <IssueQueryProvider>
+              <Component {...pageProps} />
             </IssueQueryProvider>
-        </RepositoryUserNotUsingFragmentProvider>
-      </RepositoryUserProvider>
-    </ReactRelayContext.Provider>
+          </RepositoryUserNotUsingFragmentProvider>
+        </RepositoryUserProvider>
+      </ReactRelayContext.Provider>
+      </RecoilRoot>
   )}
 
 export default MyApp

@@ -5,6 +5,7 @@ import { githubDemoContext } from '../../Providers/RepositoryUserProvider';
 import { PreloadedQuery, useFragment, useQueryLoader } from 'react-relay';
 import { repositoryQuery } from '../../queries/repository';
 import { userFragment } from '../../queries/userFragment';
+import { AiOutlineGithub } from 'react-icons/ai';
 import type { userFragment$key as userFragmentRef } from '../../queries/__generated__/userFragment.graphql';
 import type {
   repositoryQuery$data as repositoryQueryResponse,
@@ -45,9 +46,12 @@ const Header = ({avatarImagePath, githubDemoContext, initialUserQueryRef}: Props
           <div className='relative z-20'>
             <div className='max-w-10xl flex justify-between items-center px-4 py-5 sm:px-6 sm:py-3 lg:px-8 md:justify-start md:space-x-10'>
               <div>
-                <Link href='/' passHref>
+                <Link href='https://github.com/Yosuke23/nextjs_relay_demo' passHref>
                   <span className='flex'>
-                    <LogoText className='text-xl font-bold'>demo</LogoText>
+                    <h1 className="text-4xl p-2">
+                    <AiOutlineGithub style={{color: "#f0f6fc"}} />
+                    </h1>
+                    <LogoText className='ml-1 mt-3 text-xl font-bold'>nextjs_relay_demo</LogoText>
                   </span>
                 </Link>
               </div>
@@ -77,7 +81,7 @@ const Header = ({avatarImagePath, githubDemoContext, initialUserQueryRef}: Props
               <div className='hidden md:flex-1 md:flex md:items-center md:justify-end'>
                 <Link href='#' passHref>
                   <Text className='flex items-center md:ml-12 mr-2'>
-                    <span className='text-sm font-semibold'>demo</span>
+                    <span className='text-sm font-semibold'>nextjs_relay_demo</span>
                   </Text>
                 </Link>
                 <span className="ml-3">
@@ -108,14 +112,14 @@ const Header = ({avatarImagePath, githubDemoContext, initialUserQueryRef}: Props
 
 const LogoText = styled.p`
   font: sans-selif;
-  color: #fff;
+  color: #58A6FF;
 `;
 const Text = styled.p`
   font: sans-selif;
-  color: #fff;
+  color: #c9d1d9;
 `;
 const HeaderStyle = styled.header`
-  background-color: #999999;
+  background-color: #161b22;
 `;
 Header.defaultProps = {
   avatarImagePath: '',

@@ -10,6 +10,7 @@
     "relay": "relay-compiler"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "autoprefixer": "^9",
@@ -19,7 +20,9 @@
     "postcss": "^7",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-icons": "^4.4.0",
     "react-relay": "^13.2.0",
+    "recoil": "^0.7.3",
     "relay-nextjs": "^0.8.0",
     "relay-runtime": "^13.2.0",
     "styled-components": "^5.3.5",

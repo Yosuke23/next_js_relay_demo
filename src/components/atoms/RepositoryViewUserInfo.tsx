@@ -6,7 +6,7 @@ import {
   repositoryFragment$key as repositoryFragmentRef
 } from '../../queries/__generated__/repositoryFragment.graphql';
 import { repositoryFragment } from '../../queries/repositoryFragment';
-import { PreloadedQuery, useMutation } from 'react-relay/hooks';
+import { PreloadedQuery, readInlineData, useMutation } from 'react-relay/hooks';
 import { useFragment, usePreloadedQuery } from 'react-relay'
 
 import type {
@@ -31,7 +31,9 @@ export const RepositoryViewUserInfo = ({ queryReference, repositoryReference }: 
 
   const userData = useFragment<userFragmentRef>(userFragment, viewUser.user);
   const viewerData = useFragment<userFragmentRef>(userFragment, viewUser.viewer);
-  const repositoryData = useFragment<repositoryFragmentRef>(repositoryFragment, repository.repository);  
+  // useFragmentからreadInlineDataを使ってデータを取得する方法に変更
+  //const repositoryData = useFragment<repositoryFragmentRef>(repositoryFragment, repository.repository); 
+  const repositoryData = readInlineData<repositoryFragmentRef>(repositoryFragment, repository.repository);
   return (
     <>
       <main className="text-center">

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f4216cc073f3935887718b3a30db17fb>>
+ * @generated SignedSource<<7d7081775ef2285c907212f39ea27991>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -37,18 +37,18 @@ var v0 = [
     "value": "Yosuke23"
   }
 ],
-v1 = [
-  {
-    "kind": "Literal",
-    "name": "login",
-    "value": "Yosuke23"
-  }
-],
-v2 = {
+v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "url",
   "storageKey": null
 },
 v3 = {
@@ -58,7 +58,14 @@ v3 = {
   "name": "createdAt",
   "storageKey": null
 },
-v4 = {
+v4 = [
+  {
+    "kind": "Literal",
+    "name": "login",
+    "value": "Yosuke23"
+  }
+],
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -81,16 +88,20 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "repositoryFragment"
+            "kind": "InlineDataFragmentSpread",
+            "name": "repositoryFragment",
+            "selections": [
+              (v1/*: any*/),
+              (v2/*: any*/),
+              (v3/*: any*/)
+            ]
           }
         ],
         "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v4/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
         "name": "user",
@@ -122,28 +133,22 @@ return {
         "name": "repository",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
           (v2/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "url",
-            "storageKey": null
-          },
           (v3/*: any*/),
-          (v4/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": "repository(name:\"nextjs_relay_demo\",owner:\"Yosuke23\")"
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v4/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
         "name": "user",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
+          (v1/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -152,7 +157,7 @@ return {
             "storageKey": null
           },
           (v3/*: any*/),
-          (v4/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": "user(login:\"Yosuke23\")"
       }

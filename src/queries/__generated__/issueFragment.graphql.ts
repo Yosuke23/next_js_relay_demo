@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8cc6ff1e8dcad1dad52e48e6e3125a0b>>
+ * @generated SignedSource<<e31eeeedc3f65ac661676b49f25eaaf0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { InlineFragment, ReaderInlineDataFragment } from 'relay-runtime';
+export type ReactionContent = "THUMBS_UP" | "THUMBS_DOWN" | "LAUGH" | "HOORAY" | "CONFUSED" | "HEART" | "ROCKET" | "EYES" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type issueFragment$data = {
   readonly id: string;
@@ -16,12 +17,30 @@ export type issueFragment$data = {
   readonly title: string;
   readonly body: string;
   readonly url: any;
+  readonly reactions: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly content: ReactionContent;
+        readonly id: string;
+        readonly databaseId: number | null;
+      } | null;
+    } | null> | null;
+  };
   readonly comments: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
         readonly bodyText: string;
         readonly url: any;
+        readonly reactions: {
+          readonly edges: ReadonlyArray<{
+            readonly node: {
+              readonly content: ReactionContent;
+              readonly id: string;
+              readonly databaseId: number | null;
+            } | null;
+          } | null> | null;
+        };
       } | null;
     } | null> | null;
   };
@@ -32,104 +51,11 @@ export type issueFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"issueFragment">;
 };
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "url",
-  "storageKey": null
+const node: ReaderInlineDataFragment = {
+  "kind": "InlineDataFragment",
+  "name": "issueFragment"
 };
-return {
-  "argumentDefinitions": [],
-  "kind": "Fragment",
-  "metadata": null,
-  "name": "issueFragment",
-  "selections": [
-    (v0/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "publishedAt",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "body",
-      "storageKey": null
-    },
-    (v1/*: any*/),
-    {
-      "alias": null,
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "first",
-          "value": 10
-        }
-      ],
-      "concreteType": "IssueCommentConnection",
-      "kind": "LinkedField",
-      "name": "comments",
-      "plural": false,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "IssueCommentEdge",
-          "kind": "LinkedField",
-          "name": "edges",
-          "plural": true,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "concreteType": "IssueComment",
-              "kind": "LinkedField",
-              "name": "node",
-              "plural": false,
-              "selections": [
-                (v0/*: any*/),
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "bodyText",
-                  "storageKey": null
-                },
-                (v1/*: any*/)
-              ],
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        }
-      ],
-      "storageKey": "comments(first:10)"
-    }
-  ],
-  "type": "Issue",
-  "abstractKey": null
-};
-})();
 
-(node as any).hash = "3eeaa401f19c64d7293faf08c9ba6d68";
+(node as any).hash = "1fb3954edab4f11b8c3654a60c60f6c2";
 
 export default node;

@@ -6,7 +6,7 @@ import {
   repositoryFragment$key as repositoryFragmentRef
 } from '../../queries/__generated__/repositoryFragment.graphql';
 import { repositoryFragment } from '../../queries/repositoryFragment';
-import { PreloadedQuery, useFragment, useQueryLoader } from 'react-relay'
+import { PreloadedQuery, useFragment, useQueryLoader, readInlineData } from 'react-relay'
 import type { githubDemoContext } from '../../Providers/RepositoryUserProvider';
 import {repositoryQuery} from '../../queries/repository';
 import type {
@@ -36,7 +36,11 @@ export const RepositoryUserInfo = ({ githubDemoContext, initialRepositoryRef, in
     }, [])
   
   // 親コンポーネントでuseContextで取得したデータをpropsで受け取りここでuseFragmentでデータ展開する
-  const githubRepositoryData = useFragment<repositoryFragmentRef>(repositoryFragment, githubDemoContext?.data?.repository ?? null);
+  //const githubRepositoryData = useFragment<repositoryFragmentRef>(repositoryFragment, githubDemoContext?.data?.repository ?? null);
+  // useFragmentからreadInlineDataを使用してデータを取得する方法に変更
+  const githubRepositoryData = readInlineData<repositoryFragmentRef>(repositoryFragment, githubDemoContext?.data?.repository ?? null);
+
+
   const userData = useFragment<userFragmentRef>(userFragment, githubDemoContext?.data?.user ?? null);
   console.log(githubDemoContext?.data?.repository);
   if (!githubRepositoryData || !userData) {
@@ -44,15 +48,15 @@ export const RepositoryUserInfo = ({ githubDemoContext, initialRepositoryRef, in
   }
   return (
     <>
-    <main className="text-center">
-        <div className="mt-10 -mb-24 ml-10 overflow-hidden rounded-lg w-11/12 h-96 bg-gray-50 border border-gray-200">
-            <h1 className='text-xl font-bold text-gray-700 mt-12'>
+    <main className="text-center" style={{ backgroundColor: "#0d1117"}}>
+        <div className="mt-5 mb-24 ml-10 overflow-hidden rounded-lg w-11/12 h-72" style={{ backgroundColor: "#0d1117", color: "#c9d1d9", border: "2px solid #244d87" }}>
+            <h1 className='text-xl font-bold mt-12'>
             My GitHub Personal Data...
             </h1>
             <div className="ml-32">
           </div>
           <div className="mt-10">
-            <span className="text-gray-700">
+            <span className="">
               Repository: 
             </span>
             <Link href={githubRepositoryData != null ? `${githubRepositoryData?.url}` : "#"}  passHref >
@@ -61,8 +65,8 @@ export const RepositoryUserInfo = ({ githubDemoContext, initialRepositoryRef, in
               </span>
             </Link>
           </div>
-            <p className="text-gray-700 flex-grow">{userData != null ? `name: ${userData?.name}` : "Loading"}({userData!= null ? `since: ${moment(userData?.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
-            <p className="text-gray-700">{githubRepositoryData != null ? `created at: ${ moment(githubRepositoryData?.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
+            <p className="flex-grow">{userData != null ? `name: ${userData?.name}` : "Loading"}({userData!= null ? `since: ${moment(userData?.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
+            <p className="">{githubRepositoryData != null ? `created at: ${ moment(githubRepositoryData?.createdAt).format('YYYY-MM-DD(dddd)')}` : "Loading"}</p>
         </div>
         </main>
     </>

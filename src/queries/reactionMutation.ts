@@ -9,13 +9,22 @@ reactionMutation$data as reactionMutationResponse,
 } from '../queries/__generated__/reactionMutation.graphql';
 // src/queries/issueQuery.tsで取得した issueのIDをここに渡せる様な実装を目標にする、、まだできてない
 export const reactionMutations = graphql`
- mutation reactionMutation($input:AddReactionInput!){ 
-   addReaction(input:$input) { 
+ mutation reactionMutation(
+  $reactionInput:AddReactionInput!
+  $reopenIssueInput: ReopenIssueInput!
+  ){ addReaction(input:$reactionInput) { 
     reaction{
      content
+     id
+     databaseId
     }
-   } 
+   }
+    reopenIssue(input: $reopenIssueInput) {
+    issue {
+      ...issueFragment
+    }
   }
+}
 `
 // ここは現状つかってない
 // export const commitReactionMutation = (): Promise<reactionMutationResponse> =>
