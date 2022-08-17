@@ -1,11 +1,5 @@
 import '../styles/globals.css'
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 import type { AppProps } from 'next/app'
 import { ReactRelayContext } from 'react-relay'
 import useEnvironment from '../lib/relay'
